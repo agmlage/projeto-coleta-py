@@ -9,7 +9,6 @@ headers["Content-Type"] = "application/x-www-form-urlencoded"
 
 data = ""
 
-
 resp = requests.post(url, headers=headers, data=data)
 
 soup = BeautifulSoup(resp.text, 'html.parser')
@@ -17,3 +16,6 @@ soup = BeautifulSoup(resp.text, 'html.parser')
 ufs = soup.find_all("select", { "name" : "UF" })
 for uf in ufs:
     print(uf.text)
+
+
+

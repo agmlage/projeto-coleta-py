@@ -30,11 +30,3 @@ for table in tables:
         print("\n>>")
         for td in tddata:
             print(td.text)
-
-
-
-
-
-
-
-
