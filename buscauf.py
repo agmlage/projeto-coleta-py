@@ -22,4 +22,4 @@ lista = string.split()
 #print (lista)
 
 for cont in range(len(lista)):
-    print (cont,lista[cont])
+    print (lista[cont])
