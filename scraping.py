@@ -2,9 +2,12 @@ import requests
 from requests.structures import CaseInsensitiveDict
 from bs4 import BeautifulSoup
 import pandas as pd
+import numpy as np
 
 #Buscar as UFs no site do correio e salvar em um vetor
 url = "https://www2.correios.com.br/sistemas/buscacep/resultadoBuscaFaixaCEP.cfm"
+id=1
+board_members = []
 
 headers = CaseInsensitiveDict()
 headers["Content-Type"] = "application/x-www-form-urlencoded"
@@ -20,8 +23,9 @@ for uf in ufs:
 lista = string.split()
 
 #Percorrer o vetor buscando informações das UFs
-for cont in range (1):
+for cont in range (len(lista)):
     data = "UF="+lista[cont]
+    
     #print (data)
     resp = requests.post(url, headers=headers, data=data)
     soup = BeautifulSoup(resp.text, 'html.parser')
@@ -31,8 +35,21 @@ for cont in range (1):
         tabledata= table.find_all ("tr")
     for tr in tabledata:
         tddata = tr.find_all("td")
-        print("\n>>")
-        for td in tddata:
-            print(td.text)
+        if len(tddata)==4:
+            board_members.append((lista[cont],tddata[0].text.strip(), tddata[1].text.strip(),id))
+            id +=1
+
+    board_array = np.asarray(board_members)
+    len(board_array)
+    df = pd.DataFrame(board_array)
+    df.columns = ['UF','Localidade', 'Faixa de CEP','id']
+    df.to_csv('\Projeto\projeto-coleta-py\members.csv')
+
+
+
+
+
+        #for td in tddata:
+        #    print(td.text)
 
     
