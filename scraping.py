@@ -26,12 +26,11 @@ lista = string.split()
 for cont in range (len(lista)):
     data = "UF="+lista[cont]
     
-    #print (data)
     resp = requests.post(url, headers=headers, data=data)
     soup = BeautifulSoup(resp.text, 'html.parser')
     tables = soup.find_all("table", { "class" : "tmptabela" })
     for table in tables:
-        #print("\n\n\n")
+        
         tabledata= table.find_all ("tr")
     for tr in tabledata:
         tddata = tr.find_all("td")
@@ -44,12 +43,4 @@ for cont in range (len(lista)):
     df = pd.DataFrame(board_array)
     df.columns = ['UF','Localidade', 'Faixa de CEP','id']
     df.to_csv('\Projeto\projeto-coleta-py\members.csv')
-
-
-
-
-
-        #for td in tddata:
-        #    print(td.text)
-
     
