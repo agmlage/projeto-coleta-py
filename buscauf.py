@@ -8,14 +8,18 @@ headers = CaseInsensitiveDict()
 headers["Content-Type"] = "application/x-www-form-urlencoded"
 
 data = ""
+locais = requests.post(url, headers=headers, data=data)
 
-resp = requests.post(url, headers=headers, data=data)
-
-soup = BeautifulSoup(resp.text, 'html.parser')
+soup = BeautifulSoup(locais.text, 'html.parser')
 
 ufs = soup.find_all("select", { "name" : "UF" })
 for uf in ufs:
-    print(uf.text)
+    string = uf.text
+    #output=string.split(' ')
+    #output
+    #print(string)
+lista = string.split()
+#print (lista)
 
-
-
+for cont in range(len(lista)):
+    print (cont,lista[cont])
