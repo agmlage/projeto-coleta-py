@@ -23,7 +23,7 @@ for uf in ufs:
 lista = string.split()
 
 #Percorrer o vetor buscando informações das UFs
-for cont in range (2):
+for cont in range (len(lista)):
     data = "UF="+lista[cont]
     
     resp = requests.post(url, headers=headers, data=data)

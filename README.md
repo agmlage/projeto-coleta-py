@@ -6,5 +6,3 @@ pip install pandas
 Localidade
 Faixa de cep
 Gerar id
-
-teste
