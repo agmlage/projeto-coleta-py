@@ -2,7 +2,7 @@
 
 
 ## Descrição
-Projeto para coleta de raspagem no site dos correios a fim de trazer as informações dos CEPs de todos os estados.
+Projeto para coleta e raspagem no site dos [correios](https://www2.correios.com.br/sistemas/buscacep/buscaFaixaCep.cfm) a fim de trazer as informações dos CEPs de todos os estados.
 Neste projeto foi utilizada a linguagem Python e algumas bibliotecas para que fosse possível realizar a coleta dos dados refente aos estados brasileiros e suas respectivas cidades.
 
 Para que fosse possível a coleta dos dados foram utilizadas as bibliotecas listadas abaixo.
