@@ -2,18 +2,15 @@ from wsgiref import headers
 import requests
 from requests.structures import CaseInsensitiveDict
 from bs4 import BeautifulSoup
-import pandas as pd
-import numpy as np
 import json
 
 url = "https://www2.correios.com.br/sistemas/buscacep/resultadoBuscaFaixaCEP.cfm"
 idlocalidade=1
 board_members = []
-#pagini=1
 headers = CaseInsensitiveDict()
 headers["Content-Type"] = "application/x-www-form-urlencoded"
-#Buscar as UFs no site do correio e salvar em um vetor
-def consulta_uf(headers):  
+
+def consulta_uf(headers):   #Buscar as UFs inseridas no select do site e salvar em um vetor
     data = ""
     locais = requests.post(url, headers=headers, data=data)
 
@@ -26,17 +23,19 @@ def consulta_uf(headers):
     #print (lista)
     return lista   
 
-def consulta_cep(uf,idlocalidade):
+
+
+def consulta_cep(uf,idlocalidade):  #Percorrer o vetor das UFs buscando todos os CEPs
     print("# UF: " + uf)
     pagini = 1
-    while pagini<1100:
+    while pagini<1100: #percorrer todas as páginas de cada UF até não encontrar nenhum item novo.
         new = 0
-        pagfin=pagini+99
-        data = "UF="+str(uf)+"&pagini="+str(pagini)+"&pagfim="+str(pagfin)
+        pagfin=pagini+99    #definir os intervalos das páginas
+        data = "UF="+str(uf)+"&pagini="+str(pagini)+"&pagfim="+str(pagfin)  #enviar parametros para o site com informação da UF e inicio/fim da página
         resp = requests.post(url, headers=headers, data=data)
         soup = BeautifulSoup(resp.text, 'html.parser')
         tables = soup.find_all("table", { "class" : "tmptabela" })
-        for table in tables:
+        for table in tables:   #percorrer a tabela buscando os valores desejados
             tabledata= table.find_all ("tr")
             for tr in tabledata:
                 tddata = tr.find_all("td")
@@ -44,10 +43,10 @@ def consulta_cep(uf,idlocalidade):
                     localidade = {
                         "Localidade": tddata[0].text.strip(),
                         "Faixa de CEP": tddata[1].text.strip(),
-                        "ID": uf+str(idlocalidade)
+                        "ID": uf+str(idlocalidade)  #ID sendo gerada com a UF + um número em sequencia
                     }
                     skip = False
-                    for board_member in board_members:
+                    for board_member in board_members:  #remoção de valores duplicados
                         if board_member["Localidade"] == localidade["Localidade"]:
                             skip = True
                             break
@@ -57,10 +56,10 @@ def consulta_cep(uf,idlocalidade):
                         new += 1
         pagini += 100
         print("\tNew = " + str(new) + "\n\tpagini: " + str(pagini))
-        if new == 0:
+        if new == 0:    #validação para verificar existe algum item novo
             break 
 
-def save_json():
+def save_json(): #Exportar jsonl
     stringfile = ""
     for line in board_members:
         stringfile = stringfile + json.dumps(line,ensure_ascii=False) + "\n"
@@ -69,5 +68,4 @@ def save_json():
 
 for uf in consulta_uf(headers):
     consulta_cep(uf,idlocalidade)
-#print (board_members)
 save_json()
