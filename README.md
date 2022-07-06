@@ -1,4 +1,3 @@
-
 # Desafio Técnico - Busca CEP
 
 
@@ -15,10 +14,9 @@ Para que fosse possível a coleta dos dados foram utilizadas as bibliotecas list
 from wsgiref import headers
 ```
 [Doc](https://docs.python.org/pt-br/3.8/library/wsgiref.html?highlight=headers#module-wsgiref.headers)
-
 Utilizado para trabalhar com o cabeçalho do site, conseguinto utilizar as informações das UFs e avançar nas páginas.
 
-- requests
+- Requests
 ```
 pip install requests
 import requests
@@ -37,7 +35,6 @@ pip install bs4
 from bs4 import BeautifulSoup
 ```
 [Doc](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
-
 Biblioteca utilizada para extrair dados de arquivos HTML e XML.
 - Json
 ```
