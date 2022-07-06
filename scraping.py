@@ -29,7 +29,7 @@ def consulta_uf(headers):
 def consulta_cep(uf,idlocalidade):
     print("# UF: " + uf)
     pagini = 1
-    while pagini<900:
+    while pagini<1100:
         new = 0
         pagfin=pagini+99
         data = "UF="+str(uf)+"&pagini="+str(pagini)+"&pagfim="+str(pagfin)
@@ -44,7 +44,7 @@ def consulta_cep(uf,idlocalidade):
                     localidade = {
                         "Localidade": tddata[0].text.strip(),
                         "Faixa de CEP": tddata[1].text.strip(),
-                        "ID": idlocalidade
+                        "ID": uf+str(idlocalidade)
                     }
                     skip = False
                     for board_member in board_members:
@@ -63,10 +63,11 @@ def consulta_cep(uf,idlocalidade):
 def save_json():
     stringfile = ""
     for line in board_members:
-        stringfile = stringfile + json.dumps(line) + "\n"
+        stringfile = stringfile + json.dumps(line,ensure_ascii=False) + "\n"
     with open("ufs.jsonl", "w") as fp:
         fp.write(stringfile)
 
 for uf in consulta_uf(headers):
     consulta_cep(uf,idlocalidade)
+#print (board_members)
 save_json()
