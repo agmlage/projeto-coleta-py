@@ -5,6 +5,7 @@
 Projeto para coleta e raspagem no site dos [correios](https://www2.correios.com.br/sistemas/buscacep/buscaFaixaCep.cfm) a fim de trazer as informações dos CEPs de todos os estados.
 Neste projeto foi utilizada a linguagem Python e algumas bibliotecas para que fosse possível realizar a coleta dos dados refente aos estados brasileiros e suas respectivas cidades.
 
+Para esse projeto, fiz a varredura do site e exportamos as informações relacionadas a Localidade e Faixa de CEP. Tambem geramos um id com as informações da UF e um número sequencial.
 Para que fosse possível a coleta dos dados foram utilizadas as bibliotecas listadas abaixo.
 
 ### Bibliotecas Utilizadas
