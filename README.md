@@ -2,7 +2,7 @@
 
 
 ## Descrição
-Projeto para coleta e raspagem no site dos [Correios](https://www2.correios.com.br/sistemas/buscacep/buscaFaixaCep.cfm) a fim de trazer as informações dos CEPs de todos os estados.
+Projeto para coleta e raspagem no site dos [Correios](https://www2.correios.com.br/sistemas/buscacep/buscaFaixaCep.cfm) a fim de acessar as informações dos CEPs de todos os estados.
 Neste projeto foi utilizada a linguagem Python e algumas bibliotecas para que fosse possível realizar a coleta dos dados refente aos estados brasileiros e suas respectivas cidades.
 
 Para esse projeto, foi feita a varredura no site e, em seguida, as informações relacionadas a Localidade e Faixa de CEP foram exportadas. Alêm disso, para cada localidade foi gerado um ID com as informações da UF seguida de um index sequencial.
@@ -15,7 +15,7 @@ Para que fosse possível a coleta dos dados foram utilizadas as bibliotecas list
 from wsgiref import headers
 ```
 [Doc](https://docs.python.org/pt-br/3.8/library/wsgiref.html?highlight=headers#module-wsgiref.headers)
-Utilizado para trabalhar com o cabeçalho do site, conseguinto utilizar as informações das UFs e avançar nas páginas.
+Utilizado para trabalhar com o cabeçalho do site, permitindo utilizar as informações das UFs e avançar nas páginas.
 
 - Requests
 ```
@@ -23,12 +23,12 @@ pip install requests
 import requests
 ```
 [Doc](https://requests.readthedocs.io/en/latest/)
-Utilizado para enviar solicitações ao site a fim de retornar as informações desejadas
+Utilizado para requisitar ao site as informações desejadas.
 - CaseInsensitiveDict
 ```
 from requests.structures import CaseInsensitiveDict
 ```
-Dicionário utilizado no cabeçalho do site
+Dicionário utilizado no cabeçalho do site.
 
 - BeautifulSoup
 ```
@@ -43,4 +43,4 @@ pip install json
 import json
 ```
 [Doc](https://docs.python.org/3/library/json.html)
-Biblioteca usada para exportar os arquivos
+Biblioteca usada para exportar os arquivos.
