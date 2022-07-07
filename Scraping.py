@@ -28,14 +28,14 @@ def consulta_uf(headers):   #Buscar as UFs inseridas no select do site e salvar 
 def consulta_cep(uf,idlocalidade):  #Percorrer o vetor das UFs buscando todos os CEPs
     print("# UF: " + uf)
     pagini = 1
-    while pagini<1100: #percorrer todas as páginas de cada UF até não encontrar nenhum item novo.
+    while pagini<1100: #Percorrer todas as páginas de cada UF até não encontrar nenhum item novo.
         new = 0
-        pagfin=pagini+99    #definir os intervalos das páginas
-        data = "UF="+str(uf)+"&pagini="+str(pagini)+"&pagfim="+str(pagfin)  #enviar parametros para o site com informação da UF e inicio/fim da página
+        pagfin=pagini+99    #Definir os intervalos das páginas
+        data = "UF="+str(uf)+"&pagini="+str(pagini)+"&pagfim="+str(pagfin)  #Enviar parametros para o site com informação da UF e inicio/fim da página
         resp = requests.post(url, headers=headers, data=data)
         soup = BeautifulSoup(resp.text, 'html.parser')
         tables = soup.find_all("table", { "class" : "tmptabela" })
-        for table in tables:   #percorrer a tabela buscando os valores desejados
+        for table in tables:   #Percorrer a tabela buscando os valores desejados
             tabledata= table.find_all ("tr")
             for tr in tabledata:
                 tddata = tr.find_all("td")
@@ -46,7 +46,7 @@ def consulta_cep(uf,idlocalidade):  #Percorrer o vetor das UFs buscando todos os
                         "ID": uf+str(idlocalidade)  #ID sendo gerada com a UF + um número em sequencia
                     }
                     skip = False
-                    for board_member in board_members:  #remoção de valores duplicados
+                    for board_member in board_members:  #Remoção de valores duplicados
                         if board_member["Localidade"] == localidade["Localidade"]:
                             skip = True
                             break
@@ -56,7 +56,7 @@ def consulta_cep(uf,idlocalidade):  #Percorrer o vetor das UFs buscando todos os
                         new += 1
         pagini += 100
         print("\tNew = " + str(new) + "\n\tpagini: " + str(pagini))
-        if new == 0:    #validação para verificar existe algum item novo
+        if new == 0:    #Validação para verificar existe algum item novo
             break 
 
 def save_json(): #Exportar jsonl
