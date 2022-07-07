@@ -2,11 +2,9 @@
 
 
 ## Descrição
-Projeto para coleta e raspagem no site dos [Correios](https://www2.correios.com.br/sistemas/buscacep/buscaFaixaCep.cfm) a fim de acessar as informações dos CEPs de todos os estados.
-Neste projeto foi utilizada a linguagem Python e algumas bibliotecas para que fosse possível realizar a coleta dos dados refente aos estados brasileiros e suas respectivas cidades.
-
-Para esse projeto, foi feita a varredura no site e, em seguida, as informações relacionadas a Localidade e Faixa de CEP foram exportadas. Alêm disso, para cada localidade foi gerado um ID com as informações da UF seguida de um index sequencial.
-Para que fosse possível a coleta dos dados foram utilizadas as bibliotecas listadas abaixo.
+Projeto realizado a fim de obter dados e informações de todos os CEPs nacionais por meio da coleta e raspagem no site dos Correios. 
+Neste projeto, além da linguagem Python, foram utilizadas algumas bibliotecas que possibilitaram a coleta dos dados referentes aos estados brasileiros e suas respectivas cidades.
+Para a execução deste, uma varredura foi realizada no site, seguida da exportação das informações relacionadas a Localidade e Faixa do CEP. Além disso, foram gerados um ID com informações das unidades federativas e um número sequencial.
 
 ### Bibliotecas Utilizadas
 
@@ -15,7 +13,7 @@ Para que fosse possível a coleta dos dados foram utilizadas as bibliotecas list
 from wsgiref import headers
 ```
 [Doc](https://docs.python.org/pt-br/3.8/library/wsgiref.html?highlight=headers#module-wsgiref.headers)
-Utilizado para trabalhar com o cabeçalho do site, permitindo utilizar as informações das UFs e avançar nas páginas.
+Utilizado para trabalhar com o cabeçalho do site, permitindo o uso das informações das UFs e o avanço nas páginas.
 
 - Requests
 ```
@@ -36,11 +34,11 @@ pip install bs4
 from bs4 import BeautifulSoup
 ```
 [Doc](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
-Biblioteca utilizada para extrair dados de arquivos HTML e XML.
+Utilizado para extrair dados de arquivos HTML e XML.
 - Json
 ```
 pip install json
 import json
 ```
 [Doc](https://docs.python.org/3/library/json.html)
-Biblioteca usada para exportar os arquivos.
+Utilizado para exportar os arquivos.
