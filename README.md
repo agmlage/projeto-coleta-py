@@ -2,7 +2,7 @@
 
 
 ## Descrição
-Projeto realizado a fim de obter dados de todos os CEPs nacionais por meio da coleta e raspagem no site dos Correios. 
+Projeto realizado a fim de obter dados de todos os CEPs nacionais por meio da coleta e raspagem no site dos [Correios](https://www2.correios.com.br/sistemas/buscacep/buscaFaixaCEP.cfm). 
 
 Neste projeto, além da linguagem Python, foram utilizadas algumas bibliotecas que possibilitaram a coleta dos dados referentes aos estados brasileiros e suas respectivas cidades.
 Para a execução deste, uma varredura foi realizada no site, seguida da exportação das informações relacionadas a Localidade e Faixa do CEP. Além disso, foram gerados IDs com a informação da Unidade Federativa concatenado a um índice incremental para cada localidade.
